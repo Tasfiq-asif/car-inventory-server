@@ -1,13 +1,15 @@
 import { Request, Response } from 'express'
-import Car from './car.model'
+
+import { carService } from './car.service'
 
 const createCar = async (req: Request, res: Response) => {
   try {
     const payload = req.body
 
-    const result = await Car.create(payload)
+    const result = await carService.createCar(payload)
 
     res.json({
+      status: true,
       message: ' Car added successfully',
       data: result,
     })

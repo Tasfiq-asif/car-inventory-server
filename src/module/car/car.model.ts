@@ -1,6 +1,7 @@
 import { model, Schema } from 'mongoose'
+import { ICarInput } from './car.interface'
 
-const carSchema = new Schema({
+const carSchema = new Schema<ICarInput>({
   brand: {
     type: String,
     required: true, // Brand is mandatory
@@ -47,6 +48,6 @@ const carSchema = new Schema({
   },
 })
 
-const Car = model('car', carSchema)
+const Car = model<ICarInput>('car', carSchema)
 
 export default Car
