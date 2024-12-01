@@ -6,6 +6,12 @@ const createCar = async (payload: ICarInput): Promise<ICarInput> => {
   return result
 }
 
+const getAllCars = async () => {
+  const result = await Car.find()
+  return result
+}
+
 export const carService = {
   createCar,
+  getAllCars,
 }
