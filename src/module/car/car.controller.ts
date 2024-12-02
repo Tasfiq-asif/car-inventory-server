@@ -62,11 +62,12 @@ const getSingleCar = async (req: Request, res: Response) => {
 const updateCar = async (req: Request, res: Response) => {
   try {
     const { carId } = req.params
+    const data = req.body
 
-    const result = await carService.updateCar(carId)
+    const result = await carService.updateCar(carId, data)
 
     res.json({
-      message: 'Car retrieved successfully',
+      message: 'Car information updated successfully',
       status: true,
       data: result,
     })
@@ -79,7 +80,7 @@ const updateCar = async (req: Request, res: Response) => {
   }
 }
 
-const deleteCarCar = async (req: Request, res: Response) => {
+const deleteCar = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
 
@@ -103,4 +104,6 @@ export const carController = {
   createCar,
   getCars,
   getSingleCar,
+  updateCar,
+  deleteCar,
 }

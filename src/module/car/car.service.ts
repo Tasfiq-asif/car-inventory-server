@@ -13,11 +13,12 @@ const getAllCars = async () => {
 
 const getsingleCar = async (id: string) => {
   const result = await Car.findById(id)
+
   return result
 }
 
 const updateCar = async (id: string, data: ICarInput) => {
-  const result = await Car.findByIdAndUpdate({ id, data })
+  const result = await Car.findByIdAndUpdate(id, data, { new: true })
   return result
 }
 const deleteCar = async (id: string) => {
