@@ -22,7 +22,7 @@ const updateCar = async (id: string, data: ICarInput) => {
   return result
 }
 const deleteCar = async (id: string) => {
-  const result = await Car.findByIdAndUpdate({ id })
+  const result = await Car.findByIdAndDelete(id)
   return result
 }
 

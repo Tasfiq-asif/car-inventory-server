@@ -82,13 +82,13 @@ const updateCar = async (req: Request, res: Response) => {
 
 const deleteCar = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params
+    const { carId } = req.params
 
-    const result = await carService.deleteCar(id)
+    const result = await carService.deleteCar(carId)
 
     res.json({
       status: true,
-      message: 'Car retrieved successfully',
+      message: 'Car deleted successfully',
       data: result,
     })
   } catch (error) {
