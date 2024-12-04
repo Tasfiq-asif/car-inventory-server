@@ -66,7 +66,7 @@ Replace yourMongoDBUsername and yourMongoDBPassword with your MongoDB credential
 
 Once the dependencies are installed and the `.env` file is configured, start the server:
 
-````bash
+```bash
 npm start
 ```
 
@@ -106,4 +106,7 @@ This will start the server in port 8000
 ```
 
 ```
-````
+
+```
+
+```
