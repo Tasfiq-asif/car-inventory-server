@@ -45,7 +45,7 @@ Ensure that you have the following installed:
 
 Navigate to the project directory and install the required dependencies:
 
-````bash
+```bash
 cd car-inventory-management
 npm install
 ```
@@ -58,7 +58,7 @@ Create a `.env` file in the root directory and add your environment variables:
 NODE_ENV=development
 PORT=8000
 DATABASE_URL=mongodb+srv://yourMongoDBUsername:yourMongoDBPassword@cluster0.onhj8vc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-````
+```
 
 Replace yourMongoDBUsername and yourMongoDBPassword with your MongoDB credentials.
 
@@ -66,7 +66,7 @@ Replace yourMongoDBUsername and yourMongoDBPassword with your MongoDB credential
 
 Once the dependencies are installed and the `.env` file is configured, start the server:
 
-```bash
+````bash
 npm start
 ```
 
@@ -106,3 +106,4 @@ This will start the server in port 8000
 ```
 
 ```
+````
