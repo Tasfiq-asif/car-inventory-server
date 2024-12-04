@@ -48,6 +48,7 @@ Navigate to the project directory and install the required dependencies:
 ````bash
 cd car-inventory-management
 npm install
+```
 
 ## Create the `.env` File
 
@@ -57,7 +58,7 @@ Create a `.env` file in the root directory and add your environment variables:
 NODE_ENV=development
 PORT=8000
 DATABASE_URL=mongodb+srv://yourMongoDBUsername:yourMongoDBPassword@cluster0.onhj8vc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-
+````
 
 Replace yourMongoDBUsername and yourMongoDBPassword with your MongoDB credentials.
 
@@ -67,33 +68,41 @@ Once the dependencies are installed and the `.env` file is configured, start the
 
 ```bash
 npm start
+```
 
 This will start the server in port 8000
-
 
 ## API Endpoints
 
 ### 1. Create a Car
+
 - **Method**: `POST /api/cars`
 
 ### 2. Get All Cars
+
 - **Method**: `GET /api/cars`
 
 ### 3. Get a Single Car by ID
+
 - **Method**: `GET /api/cars/:carId`
 - **Example Request**: `/api/cars/674ccfe0b26bae7af9f6d08e`
 
 ### 4. Update a Car
+
 - **Method**: `PUT /api/cars/:carId`
 
 ### 5. Delete a Car
+
 - **Method**: `DELETE /api/cars/:carId`
 
 ### 6. Create an Order
+
 - **Method**: `POST /api/orders`
 
 ### 7. Get Total Revenue
+
 - **Method**: `POST /api/orders/revenue`
 
+```
 
-````
+```
