@@ -1,10 +1,11 @@
 import { Request, Response } from 'express'
 
 import { carService } from './car.service'
+import { carSchema } from './car.validation'
 
 const createCar = async (req: Request, res: Response) => {
   try {
-    const payload = req.body
+    const payload = carSchema.parse(req.body)
 
     const result = await carService.createCar(payload)
 

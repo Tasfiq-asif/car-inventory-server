@@ -1,8 +1,8 @@
-import { ObjectId } from 'mongoose'
+import mongoose from 'mongoose'
 
 export interface IOrder {
   email: string
-  carId: ObjectId
+  carId: mongoose.Types.ObjectId
   quantity: number
   totalprice: number
 }

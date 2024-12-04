@@ -20,6 +20,32 @@ const OrderCar = async (order: IOrder) => {
   return result
 }
 
+const GetTotalRevenue = async () => {
+  const revenue = await Order.aggregate([
+    {
+      $lookup: {
+        from: 'cars',
+        localField: 'carId',
+        foreignField: '_id',
+        as: 'carDetails',
+      },
+    },
+    { $unwind: '$carDetails' },
+    {
+      $group: {
+        _id: null, // Grouping all orders together
+        totalRevenue: {
+          $sum: {
+            $multiply: ['$quantity', '$carDetails.price'],
+          },
+        },
+      },
+    },
+  ])
+  return revenue[0]?.totalRevenue || 0
+}
+
 export const orderService = {
   OrderCar,
+  GetTotalRevenue,
 }
