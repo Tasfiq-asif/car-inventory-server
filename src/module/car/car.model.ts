@@ -51,6 +51,11 @@ const carSchema = new Schema<ICarInput>(
   { timestamps: true }
 )
 
+carSchema.pre('save', function (next) {
+  this.inStock = this.quantity > 0
+  next()
+})
+
 const Car = model<ICarInput>('car', carSchema)
 
 export default Car

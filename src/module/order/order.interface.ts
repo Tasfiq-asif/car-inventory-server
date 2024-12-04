@@ -1,8 +1,8 @@
 import { ObjectId } from 'mongoose'
 
-export interface Order {
+export interface IOrder {
   email: string
-  car: ObjectId
+  carId: ObjectId
   quantity: number
   totalprice: number
 }

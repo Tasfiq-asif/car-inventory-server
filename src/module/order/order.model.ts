@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose'
-import { Order } from './order.interface'
+import { IOrder } from './order.interface'
 
-const orderSchema = new Schema<Order>(
+const orderSchema = new Schema<IOrder>(
   {
     email: {
       type: 'string',
@@ -9,7 +9,7 @@ const orderSchema = new Schema<Order>(
       trim: true,
       match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address'],
     },
-    car: {
+    carId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'car',
@@ -28,4 +28,6 @@ const orderSchema = new Schema<Order>(
   { timestamps: true }
 )
 
-const Order = model<Order>('order', orderSchema)
+const Order = model<IOrder>('order', orderSchema)
+
+export default Order
