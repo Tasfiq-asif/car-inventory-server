@@ -11,11 +11,12 @@ const createOrder = async (req: Request, res: Response) => {
       message: 'Order added successfully',
       data: result,
     })
-  } catch (error) {
+  } catch (error: any) {
     res.json({
       message: ' something went wrong, Order is not Added',
       status: false,
-      error: error,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     })
   }
 }
@@ -25,14 +26,15 @@ const totalRevenue = async (req: Request, res: Response) => {
     const totalRevenue = await orderService.GetTotalRevenue()
     res.json({
       status: true,
-      message: 'Revenue retrieved successfully',
+      message: 'Total Revenue retrieved successfully',
       data: totalRevenue,
     })
-  } catch (error) {
+  } catch (error: any) {
     res.json({
       message: ' something went wrong, Order is not Added',
       status: false,
-      error: error,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     })
   }
 }

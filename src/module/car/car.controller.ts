@@ -14,11 +14,12 @@ const createCar = async (req: Request, res: Response) => {
       status: true,
       data: result,
     })
-  } catch (error) {
+  } catch (error: any) {
     res.json({
       message: ' something went wrong',
       status: false,
-      error: error,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     })
   }
 }
@@ -31,11 +32,12 @@ const getCars = async (req: Request, res: Response) => {
       status: true,
       data: result,
     })
-  } catch (error) {
+  } catch (error: any) {
     res.json({
       message: ' something went wrong',
       status: false,
-      error: error,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     })
   }
 }
@@ -51,11 +53,12 @@ const getSingleCar = async (req: Request, res: Response) => {
       status: true,
       data: result,
     })
-  } catch (error) {
+  } catch (error: any) {
     res.json({
       message: 'Could not find the Car',
       status: false,
-      error: error,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     })
   }
 }
@@ -72,11 +75,12 @@ const updateCar = async (req: Request, res: Response) => {
       status: true,
       data: result,
     })
-  } catch (error) {
+  } catch (error: any) {
     res.json({
       message: 'Could not find the Car',
       status: false,
-      error: error,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     })
   }
 }
@@ -92,11 +96,12 @@ const deleteCar = async (req: Request, res: Response) => {
       message: 'Car deleted successfully',
       data: result,
     })
-  } catch (error) {
+  } catch (error: any) {
     res.json({
       message: 'Could not find the Car',
       status: false,
-      error: error,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     })
   }
 }
