@@ -2,6 +2,7 @@ import { IUser } from '../user/user.interface'
 import User from '../user/user.model'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import BlacklistedToken from './token.model'
 
 const register = async (payload: IUser) => {
   const result = await User.create(payload)
@@ -43,7 +44,24 @@ const login = async (payload: { email: string; password: string }) => {
   return { token, user }
 }
 
+const logout = async (token: string) => {
+  // Get token expiration from JWT
+  const decoded = jwt.decode(token) as jwt.JwtPayload
+  if (!decoded || !decoded.exp) {
+    throw new Error('Invalid token')
+  }
+
+  // Add token to blacklist
+  await BlacklistedToken.create({
+    token,
+    expiresAt: new Date(decoded.exp * 1000),
+  })
+
+  return { success: true, message: 'Logged out successfully' }
+}
+
 export const AuthService = {
   register,
   login,
+  logout,
 }
