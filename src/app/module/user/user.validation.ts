@@ -20,12 +20,7 @@ const userValidationSchema = z.object({
       .min(6, { message: 'password must be minimum of 6 characters' })
       .max(100, { message: 'Password can not be more than 20 characters' }),
   }),
-  age: z
-    .number({
-      required_error: 'Age is required and must be number',
-    })
-    .int()
-    .positive(),
+
   photo: z
     .string({
       required_error: 'Photo must be provided and must be string',
