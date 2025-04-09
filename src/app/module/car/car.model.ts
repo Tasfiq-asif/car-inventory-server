@@ -5,10 +5,25 @@ const carSchema = new Schema<ICarInput>(
   {
     brand: {
       type: String,
-      required: true, // Brand is mandatory
-      trim: true, // Removes leading and trailing spaces
+      required: true,
+      trim: true,
     },
     model: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    subtitle: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    image: {
       type: String,
       required: true,
       trim: true,
@@ -16,36 +31,72 @@ const carSchema = new Schema<ICarInput>(
     year: {
       type: Number,
       required: true,
-      min: 1886, // The year the first car was made
-      max: new Date().getFullYear(), // Ensures the year is not in the future
+      min: 1886,
+      max: new Date().getFullYear(),
     },
     price: {
       type: Number,
       required: true,
-      min: 0, // Ensures price is non-negative
+      min: 0,
+    },
+    mileage: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    fuelType: {
+      type: String,
+      required: true,
+      enum: {
+        values: ['Petrol', 'Diesel', 'Electric', 'Hybrid'],
+        message: 'Please pick a valid fuel type',
+      },
+    },
+    transmission: {
+      type: String,
+      required: true,
+      enum: {
+        values: ['Automatic', 'Manual'],
+        message: 'Please pick a valid transmission type',
+      },
     },
     category: {
       type: String,
       required: true,
       enum: {
         values: ['Sedan', 'SUV', 'Truck', 'Coupe', 'Convertible'],
-        message: 'Please pick a valid categoty',
-      }, // Limits category to specific values
+        message: 'Please pick a valid category',
+      },
+    },
+    location: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    color: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    features: {
+      type: [String],
+      required: true,
+      default: [],
     },
     description: {
       type: String,
       trim: true,
-      default: 'No description provided', // Default description
+      default: 'No description provided',
     },
     quantity: {
       type: Number,
       required: true,
-      min: 0, // Ensures quantity is non-negative
+      min: 0,
     },
     inStock: {
       type: Boolean,
       required: true,
-      default: false, // Defaults to not in stock
+      default: false,
     },
   },
   { timestamps: true }
