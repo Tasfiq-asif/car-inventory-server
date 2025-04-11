@@ -96,7 +96,7 @@ const carSchema = new Schema<ICarInput>(
     inStock: {
       type: Boolean,
       required: true,
-      default: false,
+      default: true,
     },
   },
   { timestamps: true }
