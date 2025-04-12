@@ -3,6 +3,7 @@ import carRouter from './app/module/car/car.router'
 import orderRouter from './app/module/order/order.router'
 import authRoute from './app/module/auth/auth.route'
 import cors from 'cors'
+import userRouter from './app/module/user/user.router'
 
 const app = express()
 app.use(cors())
@@ -17,5 +18,6 @@ app.use(
 app.use('/api/v1/auth', authRoute)
 app.use('/api/v1', carRouter)
 app.use('/api/v1', orderRouter)
+app.use('/api/v1/user', userRouter)
 
 export default app
