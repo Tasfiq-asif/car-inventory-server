@@ -49,8 +49,14 @@ const GetTotalRevenue = async () => {
   return revenue[0]?.totalRevenue || 0
 }
 
+const GetOrdersByEmail = async (email: string) => {
+  const orders = await Order.find({ email }).populate('carId')
+  return orders
+}
+
 export const orderService = {
   OrderCar,
   GetTotalRevenue,
   getOrders,
+  GetOrdersByEmail,
 }

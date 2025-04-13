@@ -1,9 +1,9 @@
 import express from 'express'
 import carRouter from './app/module/car/car.router'
-import orderRouter from './app/module/order/order.router'
 import authRoute from './app/module/auth/auth.route'
 import cors from 'cors'
 import userRouter from './app/module/user/user.router'
+import orderRouter from './app/module/order/order.router'
 
 
 const app = express()
