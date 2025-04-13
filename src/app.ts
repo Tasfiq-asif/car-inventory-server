@@ -2,11 +2,9 @@ import express from 'express'
 import carRouter from './app/module/car/car.router'
 import orderRouter from './app/module/order/order.router'
 import authRoute from './app/module/auth/auth.route'
-<<<<<<< HEAD
 import cors from 'cors'
-=======
-import cors from 'cors';
->>>>>>> 6f830ad963cee8c9b02975a51ef715f3dc72e32f
+import userRouter from './app/module/user/user.router'
+
 
 const app = express()
 app.use(cors())
@@ -22,5 +20,6 @@ app.use(
 app.use('/api/v1/auth', authRoute)
 app.use('/api/v1', carRouter)
 app.use('/api/v1', orderRouter)
+app.use('/api/v1/user', userRouter)
 
 export default app

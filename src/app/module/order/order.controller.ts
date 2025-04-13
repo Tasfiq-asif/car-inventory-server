@@ -1,6 +1,9 @@
 import { Request, Response } from 'express'
 import { orderService } from './order.service'
 import { orderSchema } from './order.validation'
+import sendResponse from '../../../utils/sendResponse'
+import { StatusCodes } from 'http-status-codes'
+import catchAsync from '../../../utils/catchAsync'
 
 const createOrder = async (req: Request, res: Response) => {
   try {
@@ -39,7 +42,26 @@ const totalRevenue = async (req: Request, res: Response) => {
   }
 }
 
+const getOrders = async (req: Request, res: Response) => {
+  try {
+    const result = await orderService.getOrders()
+    res.json({
+      message: 'All Orders data retrieved successfully',
+      status: true,
+      data: result,
+    })
+  } catch (error: any) {
+    res.json({
+      message: ' something went wrong',
+      status: false,
+      error: error.errors || error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+    })
+  }
+}
+
 export const orderController = {
   createOrder,
   totalRevenue,
+  getOrders,
 }
