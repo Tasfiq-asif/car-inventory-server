@@ -26,6 +26,7 @@ const carSchema = new Schema<ICarInput>(
     image: {
       type: String,
       required: true,
+      trim: true,
     },
     year: {
       type: Number,
@@ -95,7 +96,7 @@ const carSchema = new Schema<ICarInput>(
     inStock: {
       type: Boolean,
       required: true,
-      default: false,
+      default: true,
     },
   },
   { timestamps: true }
