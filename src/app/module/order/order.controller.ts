@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import { orderService } from './order.service'
 import { orderSchema } from './order.validation'
+import catchAsync from '../../../utils/catchAsync'
+import sendResponse from '../../../utils/sendResponse'
 
 const createOrder = async (req: Request, res: Response) => {
   try {
@@ -39,7 +41,19 @@ const totalRevenue = async (req: Request, res: Response) => {
   }
 }
 
+const getOrdersByEmail = catchAsync(async (req: Request, res: Response) => {
+  const { email } = req.params
+  const orders = await orderService.GetOrdersByEmail(email)
+
+  sendResponse(res, {
+    statusCode: 200,
+    message: 'Orders retrieved successfully',
+    data: orders,
+  })
+})
+
 export const orderController = {
   createOrder,
   totalRevenue,
+  getOrdersByEmail,
 }

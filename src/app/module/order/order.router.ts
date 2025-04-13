@@ -1,9 +1,10 @@
-import { Router } from 'express'
+import express from 'express'
 import { orderController } from './order.controller'
 
-const orderRouter = Router()
+const router = express.Router()
 
-orderRouter.post('/orders', orderController.createOrder)
-orderRouter.get('/orders/revenue', orderController.totalRevenue)
+router.post('/', orderController.createOrder)
+router.get('/revenue', orderController.totalRevenue)
+router.get('/user/:email', orderController.getOrdersByEmail)
 
-export default orderRouter
+export const OrderRoutes = router
