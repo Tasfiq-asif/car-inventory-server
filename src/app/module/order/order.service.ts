@@ -20,6 +20,10 @@ const OrderCar = async (order: IOrder) => {
   return result
 }
 
+const getOrders = async () => {
+  const result = await Order.find()
+  return result
+}
 const GetTotalRevenue = async () => {
   const revenue = await Order.aggregate([
     {
@@ -45,7 +49,14 @@ const GetTotalRevenue = async () => {
   return revenue[0]?.totalRevenue || 0
 }
 
+const GetOrdersByEmail = async (email: string) => {
+  const orders = await Order.find({ email }).populate('carId')
+  return orders
+}
+
 export const orderService = {
   OrderCar,
   GetTotalRevenue,
+  getOrders,
+  GetOrdersByEmail,
 }

@@ -6,21 +6,14 @@ import config from './app/config'
 app.get('/', (req, res) => {
   res.send('Hello, welcome to the server!')
 })
-
 async function server() {
   try {
-    // First try to connect to database
-    console.log('Connecting to database...')
-    await mongoose.connect(config.database_url as string)
-    console.log('Database connection successful!')
-
-    // Then start the server
     await app.listen(config.port, () => {
-      console.log(`Server is running on port ${config.port}`)
+      console.log(`server is running in port ${config.port}`)
     })
+    await mongoose.connect(config.database_url as string)
   } catch (error) {
-    console.log('Error starting server:', error)
-    process.exit(1)
+    console.log(error)
   }
 }
 

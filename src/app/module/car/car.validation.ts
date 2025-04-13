@@ -32,13 +32,9 @@ export const carSchema = z.object({
     .min(1886, 'Year must be a valid car year')
     .max(new Date().getFullYear(), 'Year cannot be in the future'),
 
-  price: z
-    .number()
-    .min(0, 'Price must be a positive number'),
+  price: z.number().min(0, 'Price must be a positive number'),
 
-  mileage: z
-    .number()
-    .min(0, 'Mileage must be a non-negative number'),
+  mileage: z.number().min(0, 'Mileage must be a non-negative number'),
 
   fuelType: z.enum(['Petrol', 'Diesel', 'Electric', 'Hybrid'], {
     errorMap: () => ({ message: 'Please pick a valid fuel type' }),
@@ -71,10 +67,7 @@ export const carSchema = z.object({
     .nullable()
     .transform((str) => str?.trim() || 'No description provided'),
 
-  quantity: z
-    .number()
-    .int()
-    .min(0, 'Quantity must be non-negative'),
+  quantity: z.number().int().min(0, 'Quantity must be non-negative'),
 
   inStock: z.boolean().default(false),
 });
