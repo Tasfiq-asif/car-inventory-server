@@ -17,7 +17,7 @@ app.use(
 
 app.use('/api/v1/auth', authRoute)
 app.use('/api/v1', carRouter)
-app.use('/api/v1', orderRouter)
+app.use('/api/v1/orders', orderRouter)
 app.use('/api/v1/user', userRouter)
 
 export default app

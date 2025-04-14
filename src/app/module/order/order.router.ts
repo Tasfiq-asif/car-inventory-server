@@ -6,5 +6,7 @@ const router = express.Router()
 router.post('/', orderController.createOrder)
 router.get('/revenue', orderController.totalRevenue)
 router.get('/user/:email', orderController.getOrdersByEmail)
+router.post('/create-checkout-session', orderController.createCheckoutSession)
+router.get('/verify-payment/:sessionId', orderController.verifyPayment)
 
-export const OrderRoutes = router
+export default router

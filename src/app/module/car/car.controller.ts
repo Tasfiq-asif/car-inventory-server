@@ -66,9 +66,9 @@ const getSingleCar = async (req: Request, res: Response) => {
 const updateCar = async (req: Request, res: Response) => {
   try {
     const { carId } = req.params
-    const data = req.body
+    const validatedData = carSchema.parse(req.body)
 
-    const result = await carService.updateCar(carId, data)
+    const result = await carService.updateCar(carId, validatedData)
 
     res.json({
       message: 'Car information updated successfully',
@@ -77,7 +77,7 @@ const updateCar = async (req: Request, res: Response) => {
     })
   } catch (error: any) {
     res.json({
-      message: 'Could not find the Car',
+      message: 'Could not update the Car',
       status: false,
       error: error.errors || error.message,
       stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,

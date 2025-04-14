@@ -5,4 +5,9 @@ export interface IOrder {
   carId: mongoose.Types.ObjectId
   quantity: number
   totalprice: number
+  paymentStatus?: string
+  paymentMethod?: string
+  paymentId?: string
+  sessionId?: string
+  notes?: string
 }

@@ -24,6 +24,26 @@ const orderSchema = new Schema<IOrder>(
       required: true,
       min: 0,
     },
+    paymentStatus: {
+      type: String,
+      required: false,
+    },
+    paymentMethod: {
+      type: String,
+      required: false,
+    },
+    paymentId: {
+      type: String,
+      required: false,
+    },
+    sessionId: {
+      type: String,
+      required: false,
+    },
+    notes: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 )
