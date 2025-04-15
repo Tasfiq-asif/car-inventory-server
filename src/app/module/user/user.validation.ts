@@ -27,6 +27,27 @@ const userValidationSchema = z.object({
     })
     .optional(),
 })
+const passwordChangeValidationSchema = z.object({
+  body: z.object({
+    currentPassword: z
+      .string({ required_error: 'Current password is required' })
+      .min(6, { message: 'Current password must be at least 6 characters' }),
+    newPassword: z
+      .string({ required_error: 'New password is required' })
+      .min(6, { message: 'New password must be at least 6 characters' })
+      .max(100, { message: 'New password cannot be more than 100 characters' }),
+  }),
+})
+
+const updateProfileValidationSchema = z.object({
+  body: z.object({
+    name: z.string().min(3).max(100).optional(),
+    photo: z.string().optional(),
+  }),
+})
+
 export const UserValidation = {
   userValidationSchema,
+  passwordChangeValidationSchema,
+  updateProfileValidationSchema,
 }
