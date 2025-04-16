@@ -1,11 +1,12 @@
-import { Router } from 'express'
+import express from 'express'
 import { orderController } from './order.controller'
 
-const orderRouter = Router()
+const router = express.Router()
 
-orderRouter.post('/orders', orderController.createOrder)
-orderRouter.get('/orders', orderController.getOrders)
-orderRouter.get('/orders/revenue', orderController.totalRevenue)
-orderRouter.get('/orders/:email', orderController.getUserOrders)
+router.post('/', orderController.createOrder)
+router.get('/revenue', orderController.totalRevenue)
+router.get('/user/:email', orderController.getOrdersByEmail)
+router.post('/create-checkout-session', orderController.createCheckoutSession)
+router.get('/verify-payment/:sessionId', orderController.verifyPayment)
 
-export default orderRouter 
+export default router

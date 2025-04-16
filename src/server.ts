@@ -8,6 +8,11 @@ app.get('/', (req, res) => {
 })
 async function server() {
   try {
+    // First try to connect to database
+
+    await mongoose.connect(config.database_url as string)
+
+    // Then start the server
     await app.listen(config.port, () => {
       console.log(`server is running in port ${config.port}`)
     })

@@ -17,4 +17,9 @@ export const orderSchema = z.object({
     .int('Quantity must be an integer') // Ensures quantity is an integer
     .min(1, 'Quantity must be at least 1'),
   totalprice: z.number().min(0, 'Total price must be a positive number'),
+  paymentStatus: z.string().optional(),
+  paymentMethod: z.string().optional(),
+  paymentId: z.string().optional(),
+  sessionId: z.string().optional(),
+  notes: z.string().optional(),
 })

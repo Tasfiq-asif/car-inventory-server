@@ -3,6 +3,7 @@ import User from '../user/user.model'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import BlacklistedToken from './token.model'
+import config from '../../config'
 
 const register = async (payload: IUser) => {
   const result = await User.create(payload)
@@ -35,13 +36,24 @@ const login = async (payload: { email: string; password: string }) => {
   //create token and sent to client
 
   const jwtPayload = {
+    id: user._id.toString(),
     email: user?.email,
     role: user?.role,
   }
 
-  const token = jwt.sign(jwtPayload, 'secret', { expiresIn: '30d' })
+  const token = jwt.sign(jwtPayload, config.jwt_secret, { expiresIn: '30d' })
 
-  return { token, user }
+  // Return a modified user object with only the fields you want to expose
+  const userWithoutPassword = {
+    _id: user._id, // Include the _id field
+    email: user.email,
+    name: user.name,
+    role: user.role,
+    userStatus: user.userStatus,
+    photo: user.photo,
+  }
+
+  return { token, user: userWithoutPassword }
 }
 
 const logout = async (token: string) => {
