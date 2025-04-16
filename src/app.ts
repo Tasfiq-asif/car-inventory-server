@@ -4,17 +4,19 @@ import authRoute from './app/module/auth/auth.route'
 import cors from 'cors'
 import userRouter from './app/module/user/user.router'
 import errorHandler from './middlewares/errorHandler'
+import orderRouter from './app/module/order/order.router'
 
 const app = express()
-app.use(cors())
-app.use(express.json())
-app.use(cors())
 
+// Apply CORS configuration once with all allowed origins
 app.use(
   cors({
-    origin: ['http://localhost:5174', 'http://localhost:5173'], // your frontend URL
+    origin: ['https://car-shop-five-henna.vercel.app', 'http://localhost:5173'],
+    credentials: true,
   })
 )
+
+app.use(express.json())
 
 app.use('/api/v1/auth', authRoute)
 app.use('/api/v1', carRouter)

@@ -122,10 +122,21 @@ const verifyPayment = catchAsync(async (req: Request, res: Response) => {
   }
 })
 
+const getAllOrders = catchAsync(async (req: Request, res: Response) => {
+  const orders = await orderService.getOrders()
+
+  sendResponse(res, {
+    statusCode: 200,
+    message: 'All orders retrieved successfully',
+    data: orders,
+  })
+})
+
 export const orderController = {
   createOrder,
   totalRevenue,
   getOrdersByEmail,
   createCheckoutSession,
   verifyPayment,
+  getAllOrders,
 }
