@@ -53,10 +53,41 @@ const deleteUser = catchAsync(async (req, res) => {
   })
 })
 
+const changePassword = catchAsync(async (req, res) => {
+  const userId = req.user.id
+  const { currentPassword, newPassword } = req.body
+
+  const result = await UserService.changePassword(userId, {
+    currentPassword,
+    newPassword,
+  })
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    message: 'Password updated successfully',
+    data: result,
+  })
+})
+
+const updateProfile = catchAsync(async (req, res) => {
+  const userId = req.user.id
+  const updateData = req.body
+
+  const result = await UserService.updateProfile(userId, updateData)
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    message: 'Profile updated successfully',
+    data: result,
+  })
+})
+
 export const UserController = {
   createUser,
   getUser,
   getSingleUser,
   updateUser,
   deleteUser,
+  changePassword,
+  updateProfile,
 }

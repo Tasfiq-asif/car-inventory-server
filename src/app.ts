@@ -4,6 +4,7 @@ import orderRouter from './app/module/order/order.router'
 import authRoute from './app/module/auth/auth.route'
 import cors from 'cors'
 import userRouter from './app/module/user/user.router'
+import errorHandler from './middlewares/errorHandler'
 
 const app = express()
 app.use(cors())
@@ -19,5 +20,8 @@ app.use('/api/v1/auth', authRoute)
 app.use('/api/v1', carRouter)
 app.use('/api/v1/orders', orderRouter)
 app.use('/api/v1/user', userRouter)
+
+// Error handler - must be after all routes
+app.use(errorHandler)
 
 export default app

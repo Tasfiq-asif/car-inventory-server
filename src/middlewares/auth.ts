@@ -4,6 +4,12 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 import catchAsync from '../utils/catchAsync'
 import User from '../app/module/user/user.model'
 import { TUserRole } from '../app/module/user/user.interface'
+import config from '../app/config'
+
+// Simple interface that extends Request with user property
+interface AuthRequest extends Request {
+  user: JwtPayload & { id: string }
+}
 
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -18,8 +24,9 @@ const auth = (...requiredRoles: TUserRole[]) => {
     const token = authHeader.split(' ')[1]
 
     // checking if the given token is valid
-    const decoded = jwt.verify(token, 'secret') as JwtPayload
+    const decoded = jwt.verify(token, config.jwt_secret) as JwtPayload
 
+    // Extract user info from token
     const { role, email } = decoded
 
     // checking if the user exists
@@ -40,7 +47,12 @@ const auth = (...requiredRoles: TUserRole[]) => {
       throw new Error('You are not authorized')
     }
 
-    req.user = decoded as JwtPayload
+    // Set custom user object with ID from database
+    ;(req as AuthRequest).user = {
+      ...decoded,
+      id: user._id.toString(), // Use the actual user ID from database
+    }
+
     next()
   })
 }
