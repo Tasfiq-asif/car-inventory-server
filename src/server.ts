@@ -10,9 +10,8 @@ app.get('/', (req, res) => {
 async function server() {
   try {
     // First try to connect to database
-    console.log('Connecting to database...')
+
     await mongoose.connect(config.database_url as string)
-    console.log('Database connection successful!')
 
     // Then start the server
     await app.listen(config.port, () => {
